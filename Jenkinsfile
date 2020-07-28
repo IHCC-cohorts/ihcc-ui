@@ -25,7 +25,7 @@ pipeline {
         branch "develop"
       }
       steps {
-        withCredentials([usernamePassword(credentialsId:'ihccDockerhubUser', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+        withCredentials([usernamePassword(credentialsId:'ihcc_dockerhub_user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
           sh 'docker login -u $USERNAME -p $PASSWORD'
           sh "docker tag ${dockerHubRepo}:${commit} ${dockerHubRepo}:edge"
           sh "docker push ${dockerHubRepo}:${commit}"
@@ -38,7 +38,7 @@ pipeline {
         branch "master"
       }
       steps {
-        withCredentials([usernamePassword(credentialsId:'ihccDockerhubUser', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+        withCredentials([usernamePassword(credentialsId:'ihcc_dockerhub_user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
           sh 'docker login -u $USERNAME -p $PASSWORD'
           sh "docker tag ${dockerHubRepo}:${commit} ${dockerHubRepo}:latest"
           sh "docker tag ${dockerHubRepo}:${commit} ${dockerHubRepo}:${version}"
