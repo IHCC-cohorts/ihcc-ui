@@ -1,4 +1,5 @@
-def dockerHubRepo = "icgcargo/platform-ui"
+def dockerHubRepo = "ihcc/ihcc-ui"
+def githubRepo = "IHCC-cohorts/ihcc-ui"
 def commit = "UNKNOWN"
 def version = "UNKNOWN"
 
@@ -38,8 +39,13 @@ pipeline {
         branch "master"
       }
       steps {
-        withCredentials([usernamePassword(credentialsId:'ihcc_dockerhub_user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-          sh 'docker login -u $USERNAME -p $PASSWORD'
+        withCredentials([
+          usernamePassword(credentialsId:'ihcc_dockerhub_user', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD'),
+          usernamePassword(credentialsId:'github', usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_PASSWORD'),
+        ]) {
+          sh "git tag ${version}"
+          sh "git push https://${GITHUB_USERNAME}:${GITHUB_PASSWORD}@github.com/${githubRepo} --tags"
+          sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
           sh "docker tag ${dockerHubRepo}:${commit} ${dockerHubRepo}:latest"
           sh "docker tag ${dockerHubRepo}:${commit} ${dockerHubRepo}:${version}"
           sh "docker push ${dockerHubRepo}:latest"
