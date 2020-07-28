@@ -33,9 +33,9 @@ pipeline {
         }
       }
     }
-    stage('Pushes edge image') {
+    stage('Pushes latest image') {
       when {
-        branch "develop"
+        branch "master"
       }
       steps {
         withCredentials([usernamePassword(credentialsId:'ihccDockerhubUser', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
