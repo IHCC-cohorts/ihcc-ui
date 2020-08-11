@@ -4,6 +4,8 @@ import { createBrowserHistory } from "history";
 import CohortRepo from "./pages/cohortRepo";
 import logo from "./logo.png";
 import { css } from "emotion";
+import { ARRANGER_API } from "./config";
+import urlJoin from "url-join";
 
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
@@ -45,7 +47,7 @@ function App() {
   const projectId = "ihcc";
 
   const client = new ApolloClient({
-    uri: `${process.env.REACT_APP_ARRANGER_API}/${projectId}/graphql`,
+    uri: urlJoin(ARRANGER_API, `/${projectId}/graphql`),
   });
 
   return (
