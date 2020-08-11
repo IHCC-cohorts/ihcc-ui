@@ -543,7 +543,9 @@ const CohortRepo = ({
   projectId: string;
 }) => {
   const arrangerFetcher = createArrangerFetcher({
-    defaultHeaders: `Basic ${btoa(API_BASIC_AUTH_PAIR)}`,
+    defaultHeaders: {
+      authorization: `Basic ${btoa(API_BASIC_AUTH_PAIR)}`,
+    },
   });
   return (
     <Arranger
