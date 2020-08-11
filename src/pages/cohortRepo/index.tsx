@@ -18,6 +18,7 @@ import {
   // @ts-ignore
 } from "@arranger/components/dist/Arranger";
 import "@arranger/components/public/themeStyles/beagle/beagle.css";
+import createArrangerFetcher from "./arrangerFetcher/createArrangerFetcher";
 
 const pageContainer = css`
   display: flex;
@@ -460,7 +461,6 @@ const PageContent = (props: { sqon: SQON | null }) => {
   const onFacetCollapserClick = () => {
     setFacetPanelCollapsed(!facetPanelCollapsed);
   };
-  console.log("props: ", props);
   return (
     <div className={pageContainer}>
       <div className={facetPanelContainer(facetPanelCollapsed)}>
@@ -536,18 +536,23 @@ const CohortRepo = ({
   index,
   graphqlField,
   projectId,
+  arrangerFetcher,
 }: {
   index: string;
   graphqlField: string;
   projectId: string;
-}) => (
-  <Arranger
-    disableSocket
-    index={index}
-    graphqlField={graphqlField}
-    projectId={projectId}
-    render={(props: any) => <PageContent {...props} />}
-  />
-);
+  arrangerFetcher: ReturnType<typeof createArrangerFetcher>;
+}) => {
+  return (
+    <Arranger
+      disableSocket
+      api={arrangerFetcher}
+      index={index}
+      graphqlField={graphqlField}
+      projectId={projectId}
+      render={(props: any) => <PageContent {...props} />}
+    />
+  );
+};
 
 export default CohortRepo;
