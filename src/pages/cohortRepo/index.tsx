@@ -19,7 +19,6 @@ import {
 } from "@arranger/components/dist/Arranger";
 import "@arranger/components/public/themeStyles/beagle/beagle.css";
 import createArrangerFetcher from "./arrangerFetcher/createArrangerFetcher";
-import { API_BASIC_AUTH_PAIR } from "../../config";
 
 const pageContainer = css`
   display: flex;
@@ -537,16 +536,13 @@ const CohortRepo = ({
   index,
   graphqlField,
   projectId,
+  arrangerFetcher,
 }: {
   index: string;
   graphqlField: string;
   projectId: string;
+  arrangerFetcher: ReturnType<typeof createArrangerFetcher>;
 }) => {
-  const arrangerFetcher = createArrangerFetcher({
-    defaultHeaders: {
-      authorization: `Basic ${btoa(API_BASIC_AUTH_PAIR)}`,
-    },
-  });
   return (
     <Arranger
       disableSocket

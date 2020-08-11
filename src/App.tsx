@@ -6,6 +6,8 @@ import logo from "./logo.png";
 import { css } from "emotion";
 import { ARRANGER_API } from "./config";
 import urlJoin from "url-join";
+import { API_BASIC_AUTH_PAIR } from "./config";
+import createArrangerFetcher from "./pages/cohortRepo/arrangerFetcher/createArrangerFetcher";
 
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
@@ -46,8 +48,20 @@ function App() {
   const graphqlField = "cohort";
   const projectId = "ihcc";
 
+  const authorizationHeader = `Basic ${btoa(API_BASIC_AUTH_PAIR)}`;
+
   const client = new ApolloClient({
     uri: urlJoin(ARRANGER_API, `/${projectId}/graphql`),
+    headers: {
+      authorization: authorizationHeader,
+    },
+  });
+
+  // This guy supports requests made by arranger's UI components
+  const arrangerFetcher = createArrangerFetcher({
+    defaultHeaders: {
+      authorization: authorizationHeader,
+    },
   });
 
   return (
@@ -81,6 +95,7 @@ function App() {
                   index={index}
                   graphqlField={graphqlField}
                   projectId={projectId}
+                  arrangerFetcher={arrangerFetcher}
                 />
               </Route>
             </Switch>
