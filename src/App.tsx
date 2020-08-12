@@ -12,6 +12,38 @@ import createArrangerFetcher from "./pages/cohortRepo/arrangerFetcher/createArra
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
 
+const DisclaimerBanner = () => {
+  const [shown, setShown] = React.useState(true);
+  return (
+    <div
+      className={css`
+        display: ${shown ? "flex" : "none"};
+        justify-content: space-between;
+        align-items: center;
+        background: black;
+        opacity: 0.8;
+        color: white;
+        padding: 10px;
+      `}
+    >
+      The IHCC Atlas currently has a combination of real and mock data for demo
+      purpose. The data is not appropriate for research.
+      <button
+        onClick={() => setShown(false)}
+        className={css`
+          max-height: 20px;
+          border-radius: 100px;
+          border: none;
+          border: none;
+          cursor: pointer;
+        `}
+      >
+        ok
+      </button>
+    </div>
+  );
+};
+
 function App() {
   const customHistory = createBrowserHistory();
   const fullView = css`
@@ -88,6 +120,7 @@ function App() {
           </div>
         </div>
         <div className={pageContainer}>
+          <DisclaimerBanner />
           <Router history={customHistory}>
             <Switch>
               <Route exact path="/">

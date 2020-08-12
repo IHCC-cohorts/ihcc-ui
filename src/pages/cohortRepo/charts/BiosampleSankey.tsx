@@ -1,15 +1,10 @@
 import React from "react";
-import { ResponsivePie } from "@nivo/pie";
 import { ResponsiveSankey } from "@nivo/sankey";
 import { css } from "emotion";
 import _ from "lodash";
-import uniqBy from "lodash/uniqBy";
-import orderBy from "lodash/orderBy";
 
 import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/react-hooks";
-import { stringify } from "querystring";
-import { link } from "fs";
 
 const container = (loading: boolean) => css`
   height: 100%;
@@ -140,6 +135,7 @@ export default ({ sqon }: { sqon: {} | null }) => {
           labelOrientation="horizontal"
           labelPadding={16}
           labelTextColor={{ from: "color", modifiers: [["darker", 1]] }}
+          isInteractive={false}
         />
       )}
     </div>

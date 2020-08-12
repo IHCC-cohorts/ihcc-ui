@@ -63,7 +63,10 @@ const tableContainer = css`
   & .tableToolbar {
     padding: 8px 0px;
     font-size: 12px;
+    height: 32px;
     & .group {
+      height: 32px;
+      display: none;
       & .dropDownHeader {
         display: none;
       }
@@ -76,9 +79,6 @@ const tableContainer = css`
     }
     & .inputWrapper {
       display: none !important;
-    }
-    & .group {
-      height: 32px;
     }
   }
   & .ReactTable {
@@ -504,7 +504,10 @@ const PageContent = (props: { sqon: SQON | null }) => {
         </div>
         <div className={`${footerStyle} ${bodyFooter}`}>
           <div className={footerSponsor}>
-            Sponsored by <img className={sponsorLogo} src={GGMC_logo} />
+            Sponsored by{" "}
+            <a href="https://g2mc.org">
+              <img className={sponsorLogo} src={GGMC_logo} />
+            </a>
           </div>
           <div className={footerSponsor}>
             Powered by{" "}
@@ -518,10 +521,10 @@ const PageContent = (props: { sqon: SQON | null }) => {
             </a>
           </div>
           <div>
-            <a href="/" className={footerLink}>
+            <a href="https://ihccglobal.org/" className={footerLink}>
               About IHCC
             </a>
-            <a href="/" className={footerLink}>
+            <a href="https://ihccglobal.org/contact-us/" className={footerLink}>
               Contact Us
             </a>
           </div>
