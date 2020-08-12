@@ -505,7 +505,7 @@ const PageContent = (props: { sqon: SQON | null }) => {
         <div className={`${footerStyle} ${bodyFooter}`}>
           <div className={footerSponsor}>
             Sponsored by{" "}
-            <a href="https://g2mc.org">
+            <a href="https://g2mc.org" target="_blank">
               <img className={sponsorLogo} src={GGMC_logo} />
             </a>
           </div>
@@ -521,10 +521,18 @@ const PageContent = (props: { sqon: SQON | null }) => {
             </a>
           </div>
           <div>
-            <a href="https://ihccglobal.org/" className={footerLink}>
+            <a
+              href="https://ihccglobal.org/"
+              className={footerLink}
+              target="_blank"
+            >
               About IHCC
             </a>
-            <a href="https://ihccglobal.org/contact-us/" className={footerLink}>
+            <a
+              href="https://ihccglobal.org/contact-us/"
+              className={footerLink}
+              target="_blank"
+            >
               Contact Us
             </a>
           </div>
