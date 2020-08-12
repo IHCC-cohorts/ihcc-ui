@@ -13,33 +13,20 @@ import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
 
 const DisclaimerBanner = () => {
-  const [shown, setShown] = React.useState(true);
   return (
     <div
       className={css`
-        display: ${shown ? "flex" : "none"};
+        display: flex;
         justify-content: space-between;
         align-items: center;
-        background: black;
+        background: #4f5165;
         opacity: 0.8;
         color: white;
         padding: 10px;
       `}
     >
-      The IHCC Atlas currently has a combination of real and mock data for demo
-      purpose. The data is not appropriate for research.
-      <button
-        onClick={() => setShown(false)}
-        className={css`
-          max-height: 20px;
-          border-radius: 100px;
-          border: none;
-          border: none;
-          cursor: pointer;
-        `}
-      >
-        ok
-      </button>
+      The IHCC Cohort Atlas currently has a combination of real and mock data
+      for demo purposes. The data is not appropriate for research.
     </div>
   );
 };
