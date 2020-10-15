@@ -4,7 +4,7 @@ import { createBrowserHistory } from "history";
 import CohortRepo from "./pages/cohortRepo";
 import logo from "./logo.png";
 import { css } from "emotion";
-import { ARRANGER_API } from "./config";
+import { ARRANGER_API, SHOW_COHORT_REPO_DISCLAIMER } from "./config";
 import urlJoin from "url-join";
 import { API_BASIC_AUTH_PAIR } from "./config";
 import createArrangerFetcher from "./pages/cohortRepo/arrangerFetcher/createArrangerFetcher";
@@ -107,7 +107,7 @@ function App() {
           </div>
         </div>
         <div className={pageContainer}>
-          <DisclaimerBanner />
+          {SHOW_COHORT_REPO_DISCLAIMER && <DisclaimerBanner />}
           <Router history={customHistory}>
             <Switch>
               <Route exact path="/">
