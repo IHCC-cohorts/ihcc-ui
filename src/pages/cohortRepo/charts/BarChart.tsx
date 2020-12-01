@@ -8,7 +8,7 @@ import _ from "lodash";
 type ChartData = { country: string; cohorts: number }[];
 
 export default ({ sqon }: { sqon: {} | null }) => {
-  const { data, loading: loadingCountries } = useQuery<{
+  const { data } = useQuery<{
     cohort: {
       aggregations: {
         countries: {

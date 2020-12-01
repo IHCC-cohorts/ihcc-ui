@@ -1,7 +1,6 @@
 import React from "react";
 import { css } from "emotion";
 import BarChart from "./BarChart";
-import BioSampleChart from "./BioSampleChart";
 import BiosampleSankey from "./BiosampleSankey";
 
 import { Row, Col } from "react-grid-system";
