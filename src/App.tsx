@@ -6,11 +6,12 @@ import logo from "./logo.png";
 import { css } from "emotion";
 import { ARRANGER_API, SHOW_COHORT_REPO_DISCLAIMER } from "./config";
 import urlJoin from "url-join";
-import { API_BASIC_AUTH_PAIR } from "./config";
+import { API_BASIC_AUTH_PAIR, MAINTENANCE_MODE } from "./config";
 import createArrangerFetcher from "./pages/cohortRepo/arrangerFetcher/createArrangerFetcher";
 
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
+import MaintenancePageContent from "./components/MaintenancePageContent";
 
 const DisclaimerBanner = () => {
   return (
@@ -107,19 +108,24 @@ function App() {
           </div>
         </div>
         <div className={pageContainer}>
-          {SHOW_COHORT_REPO_DISCLAIMER && <DisclaimerBanner />}
-          <Router history={customHistory}>
-            <Switch>
-              <Route exact path="/">
-                <CohortRepo
-                  index={index}
-                  graphqlField={graphqlField}
-                  projectId={projectId}
-                  arrangerFetcher={arrangerFetcher}
-                />
-              </Route>
-            </Switch>
-          </Router>
+          {MAINTENANCE_MODE && <MaintenancePageContent />}
+          {!MAINTENANCE_MODE && (
+            <>
+              {SHOW_COHORT_REPO_DISCLAIMER && <DisclaimerBanner />}
+              <Router history={customHistory}>
+                <Switch>
+                  <Route exact path="/">
+                    <CohortRepo
+                      index={index}
+                      graphqlField={graphqlField}
+                      projectId={projectId}
+                      arrangerFetcher={arrangerFetcher}
+                    />
+                  </Route>
+                </Switch>
+              </Router>
+            </>
+          )}
         </div>
       </div>
     </ApolloProvider>

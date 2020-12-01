@@ -1,13 +1,11 @@
 import React from "react";
 import { css } from "emotion";
 
-import GGMC_logo from "./GGMC_logo.png";
-import chevron from "./chevron-right.svg";
-import websiteIcon from "./website.svg";
-import arrow from "./arrow-right@2x.png";
-import checkmark from "./check.svg";
-import Xmark from "./X.svg";
-import overture_logo from "./overture.svg";
+import chevron from "./assets/chevron-right.svg";
+import websiteIcon from "./assets/website.svg";
+import arrow from "./assets/arrow-right@2x.png";
+import checkmark from "./assets/check.svg";
+import Xmark from "./assets/X.svg";
 
 import Charts from "./charts";
 import {
@@ -19,6 +17,7 @@ import {
 } from "@arranger/components/dist/Arranger";
 import "@arranger/components/public/themeStyles/beagle/beagle.css";
 import createArrangerFetcher from "./arrangerFetcher/createArrangerFetcher";
+import Footer from "../../components/Footer";
 
 const pageContainer = css`
   display: flex;
@@ -218,24 +217,6 @@ const facetPanelFooter = css`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-`;
-const bodyFooter = css`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-`;
-const footerSponsor = css`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-const footerLink = css`
-  margin: 10px;
-  color: #47478d;
-`;
-const sponsorLogo = css`
-  width: 100px;
 `;
 const chevronLeft = css`
   width: 10px;
@@ -502,42 +483,7 @@ const PageContent = (props: { sqon: SQON | null }) => {
             <Table {...props} customColumns={customTableColumns} />
           </div>
         </div>
-        <div className={`${footerStyle} ${bodyFooter}`}>
-          <div className={footerSponsor}>
-            Sponsored by{" "}
-            <a href="https://g2mc.org" target="_blank">
-              <img className={sponsorLogo} src={GGMC_logo} />
-            </a>
-          </div>
-          <div className={footerSponsor}>
-            Powered by{" "}
-            <a href="https://www.overture.bio/" target="_blank">
-              <img
-                className={`${sponsorLogo} ${css`
-                  padding-left: 5px;
-                `}`}
-                src={overture_logo}
-              />
-            </a>
-          </div>
-          <div>
-            <a
-              href="https://ihccglobal.org/"
-              className={footerLink}
-              target="_blank"
-            >
-              About IHCC
-            </a>
-            <a
-              href="https://ihccglobal.org/contact-us/"
-              className={footerLink}
-              target="_blank"
-            >
-              Contact Us
-            </a>
-          </div>
-          <div>© 2020 International HundredK+ Cohorts Consortium</div>
-        </div>
+        <Footer />
       </div>
     </div>
   );
