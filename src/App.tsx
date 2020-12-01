@@ -94,7 +94,7 @@ function App() {
               align-items: center;
             `}
           >
-            <img src={logo} className={logoStyle}></img>
+            <img alt="IHCC logo" src={logo} className={logoStyle}></img>
             International HundredK+ Cohorts Consortium
           </div>
           <div

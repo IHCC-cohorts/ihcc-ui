@@ -4,8 +4,6 @@
 
 import axios from "axios";
 
-let token: string;
-
 const ajax = axios.create();
 
 ajax.interceptors.request.use(

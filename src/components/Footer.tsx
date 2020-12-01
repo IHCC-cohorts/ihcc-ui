@@ -36,14 +36,19 @@ const Footer = () => (
   <div className={`${footerStyle} ${bodyFooter}`}>
     <div className={footerSponsor}>
       Sponsored by{" "}
-      <a href="https://g2mc.org" target="_blank">
-        <img className={sponsorLogo} src={GGMC_logo} />
+      <a href="https://g2mc.org" target="_blank" rel="noopener noreferrer">
+        <img alt="GGMC_logo" className={sponsorLogo} src={GGMC_logo} />
       </a>
     </div>
     <div className={footerSponsor}>
       Powered by{" "}
-      <a href="https://www.overture.bio/" target="_blank">
+      <a
+        href="https://www.overture.bio/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <img
+          alt="overture_logo"
           className={`${sponsorLogo} ${css`
             padding-left: 5px;
           `}`}
@@ -52,13 +57,19 @@ const Footer = () => (
       </a>
     </div>
     <div>
-      <a href="https://ihccglobal.org/" className={footerLink} target="_blank">
+      <a
+        href="https://ihccglobal.org/"
+        className={footerLink}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         About IHCC
       </a>
       <a
         href="https://ihccglobal.org/contact-us/"
         className={footerLink}
         target="_blank"
+        rel="noopener noreferrer"
       >
         Contact Us
       </a>

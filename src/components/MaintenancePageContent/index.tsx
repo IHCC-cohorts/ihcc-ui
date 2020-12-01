@@ -23,6 +23,7 @@ export default () => (
       `}
     >
       <img
+        alt="maintenance_icon"
         src={icon}
         className={css`
           width: 297px;

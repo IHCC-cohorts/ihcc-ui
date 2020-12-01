@@ -256,8 +256,13 @@ const TableWebsiteCell = ({ original }: { original: { website: string } }) => {
     height: 100%;
   `;
   return (
-    <a className={link} href={original.website} target="_blank">
-      <img className={icon} src={websiteIcon}></img>
+    <a
+      className={link}
+      href={original.website}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <img alt="website_icon" className={icon} src={websiteIcon}></img>
     </a>
   );
 };
@@ -291,9 +296,9 @@ const BooleanCell = ({ isTrue }: { isTrue: boolean }) => {
   return (
     <div className={`${containerStyle}`}>
       {isTrue ? (
-        <img className={`${iconStyle}`} src={checkmark}></img>
+        <img alt="check_mark" className={`${iconStyle}`} src={checkmark}></img>
       ) : (
-        <img className={`${iconStyle}`} src={Xmark}></img>
+        <img alt="x_mark" className={`${iconStyle}`} src={Xmark}></img>
       )}
     </div>
   );
@@ -463,8 +468,8 @@ const PageContent = (props: { sqon: SQON | null }) => {
             className={collapseButtonStyle(facetPanelCollapsed)}
             onClick={onFacetCollapserClick}
           >
-            <img src={chevron} className={chevronLeft}></img>
-            <img src={chevron} className={chevronLeft}></img>
+            <img alt="chevron_left" src={chevron} className={chevronLeft}></img>
+            <img alt="chevron_left" src={chevron} className={chevronLeft}></img>
           </div>
         </div>
       </div>
@@ -472,7 +477,11 @@ const PageContent = (props: { sqon: SQON | null }) => {
         <div className={bodyContent}>
           {!props.sqon ? (
             <div className={`sqon-view ${emptySqonContainer}`}>
-              <img src={arrow} className={emptySqonArrowStyle}></img>
+              <img
+                alt="arrow_icon"
+                src={arrow}
+                className={emptySqonArrowStyle}
+              ></img>
               Use the filter panel on the left to customize your cohort search.
             </div>
           ) : (
