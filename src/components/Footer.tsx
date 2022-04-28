@@ -74,7 +74,9 @@ const Footer = () => (
         Contact Us
       </a>
     </div>
-    <div>© 2020 International HundredK+ Cohorts Consortium</div>
+    <div>
+      © {new Date().getFullYear()} International HundredK+ Cohorts Consortium
+    </div>
   </div>
 );
 
