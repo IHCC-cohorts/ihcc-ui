@@ -45,19 +45,18 @@ function App() {
     display: flex;
     align-items: center;
     font-size: 24px;
-    font-weight: bold;
     font-stretch: normal;
     font-style: normal;
     line-height: 1.04;
     letter-spacing: normal;
-    color: #191970;
     background: white;
     border-bottom: solid 2px #dcdde1;
     width: 100%;
     justify-content: space-between;
   `;
   const logoStyle = css`
-    width: 142px;
+    width: 62px;
+    margin-left: 5px;
   `;
   const pageContainer = css`
     position: relative;
