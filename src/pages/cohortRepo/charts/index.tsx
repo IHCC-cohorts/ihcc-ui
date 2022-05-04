@@ -18,6 +18,12 @@ const chartContainer = css`
   align-items: center;
   height: 150px;
 `;
+
+const barChartContainer = css`
+  & svg {
+    overflow-x: overlay;
+  }
+`;
 const chartTitleStyle = css`
   font-size: 12px;
   font-weight: bold;
@@ -29,7 +35,7 @@ export default ({ sqon }: { sqon: {} | null }) => {
     <div className={container}>
       <Row className="row" style={{ width: "100%" }}>
         <Col lg={6}>
-          <div className={`${chartContainer}`}>
+          <div className={`${chartContainer} ${barChartContainer}`}>
             <div className={chartTitleStyle}>Cohorts by Country</div>
             <BarChart sqon={sqon} />
           </div>
