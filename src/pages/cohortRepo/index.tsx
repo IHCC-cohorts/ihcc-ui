@@ -316,7 +316,7 @@ const customTypeConfigs = {
     width: 100,
   },
   percent_range: {
-    width: 83,
+    width: 69,
   },
   string_array: {
     style: { whiteSpace: "unset" },
