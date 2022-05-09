@@ -65,12 +65,12 @@ const tableContainer = css`
     height: 32px;
     & .group {
       height: 32px;
-      display: none;
-      & .dropDownHeader {
+      & .buttonWrapper {
+        /* Hide the Export TSV button */
         display: none;
       }
-      & .buttonWrapper {
-        /* the Export TSV button */
+      & .dropDownHeader {
+        /* Fix Column Selector Borders */
         border-radius: 10px;
         border: solid 1px #b2b7c1;
         height: 27px;
@@ -120,6 +120,9 @@ const tableContainer = css`
         border: none;
       }
     }
+  }
+  & .ReactTable .rt-th {
+    white-space: normal;
   }
 `;
 const facetScroller = (collapsed: boolean) => css`
@@ -282,7 +285,7 @@ type CohortDocument = {
   pi_lead: string;
 };
 
-const BooleanCell = ({ isTrue }: { isTrue: boolean }) => {
+const BooleanCell = ({ isTrue, ...rest }: { isTrue: boolean }) => {
   const containerStyle = css`
     width: 100%;
     height: 100%;
@@ -304,143 +307,27 @@ const BooleanCell = ({ isTrue }: { isTrue: boolean }) => {
   );
 };
 
-const customTableColumns = [
-  {
-    index: 1,
-    content: {
-      accessor: "cohort_name",
-      Header: "Cohort Name",
-      Cell: ({ original }: { original: CohortDocument }) => (
-        <>{original.cohort_name}</>
-      ),
-    },
+const customTypeConfigs = {
+  boolean: {
+    width: 55,
+    Cell: ({ value }: any) => <BooleanCell isTrue={value} />,
   },
-  {
-    index: 3,
-    content: {
-      accessor: "countries",
-      style: { whiteSpace: "unset" },
-      Header: "Countries",
-      Cell: ({ original }: { original: CohortDocument }) => (
-        <>{original.countries.join(", ")}</>
-      ),
-    },
+  enrollment: {
+    width: 100,
   },
-  {
-    index: 3,
-    content: {
-      accessor: "current_enrollment",
-      Header: "Current Enrollment",
-      maxWidth: 200,
-    },
+  percent_range: {
+    width: 69,
   },
-  {
-    index: 3,
-    content: {
-      accessor: "available_data_types.genomic_data",
-      resizable: false,
-      width: 70,
-      Header: (
-        <>
-          Genomic <br /> Data
-        </>
-      ),
-      Cell: ({ original }: { original: CohortDocument }) => (
-        <BooleanCell isTrue={original.available_data_types.genomic_data} />
-      ),
-    },
+  string_array: {
+    style: { whiteSpace: "unset" },
+    Cell: ({ value }: any) => <>{value?.join ? value?.join(", ") : value}</>,
   },
-  {
-    index: 3,
-    content: {
-      accessor: "available_data_types.environmental_data",
-      resizable: false,
-      width: 100,
-      Header: (
-        <>
-          Environmental <br /> Data
-        </>
-      ),
-      Cell: ({ original }: { original: CohortDocument }) => (
-        <BooleanCell
-          isTrue={original.available_data_types.environmental_data}
-        />
-      ),
-    },
+  website: {
+    resizable: false,
+    Cell: TableWebsiteCell,
+    width: 70,
   },
-  {
-    index: 3,
-    content: {
-      accessor: "available_data_types.biospecimens",
-      resizable: false,
-      width: 90,
-      Header: (
-        <>
-          Biospecimen <br /> Data
-        </>
-      ),
-      Cell: ({ original }: { original: CohortDocument }) => (
-        <BooleanCell isTrue={original.available_data_types.biospecimens} />
-      ),
-    },
-  },
-  {
-    index: 3,
-    content: {
-      accessor: "available_data_types.phenotypic_clinical_data",
-      resizable: false,
-      width: 60,
-      Header: (
-        <>
-          Clinical <br /> Data
-        </>
-      ),
-      Cell: ({ original }: { original: CohortDocument }) => (
-        <BooleanCell
-          isTrue={original.available_data_types.phenotypic_clinical_data}
-        />
-      ),
-    },
-  },
-  {
-    index: 3,
-    content: {
-      width: 90,
-      resizable: false,
-      sortable: false,
-      Header: (
-        <>
-          Data Sharing <br />
-          Potential
-        </>
-      ),
-      Cell: ({ original }: { original: CohortDocument }) => (
-        <BooleanCell isTrue />
-      ),
-    },
-  },
-  {
-    index: 3,
-    content: {
-      accessor: "pi_lead",
-      Header: "PI Lead",
-      style: { whiteSpace: "unset" },
-      Cell: ({ original }: { original: CohortDocument }) => (
-        <>{original.pi_lead}</>
-      ),
-    },
-  },
-  {
-    index: 9999,
-    content: {
-      resizable: false,
-      accessor: "website",
-      Header: "Website",
-      Cell: TableWebsiteCell,
-      width: 70,
-    },
-  },
-];
+};
 
 const PageContent = (props: { sqon: SQON | null }) => {
   const [facetPanelCollapsed, setFacetPanelCollapsed] = React.useState(false);
@@ -489,7 +376,12 @@ const PageContent = (props: { sqon: SQON | null }) => {
           )}
           <Charts sqon={props.sqon}></Charts>
           <div className={tableContainer}>
-            <Table {...props} customColumns={customTableColumns} />
+            <Table
+              columnDropdownText="Columns"
+              enableDropDownControls={true}
+              customTypeConfigs={customTypeConfigs}
+              {...props}
+            />
           </div>
         </div>
         <Footer />
