@@ -41,7 +41,7 @@ export default ({ sqon }: { sqon: {} | null }) => {
     };
   }>(
     gql`
-      query($sqon: JSON) {
+      query ($sqon: JSON) {
         cohort {
           hits(first: 1000, filters: $sqon) {
             edges {
@@ -111,7 +111,7 @@ export default ({ sqon }: { sqon: {} | null }) => {
     .orderBy(["source", "target"])
     .value();
 
-  return (
+  return _.isEmpty(chartLinks) ? null : (
     <div className={container(loading)}>
       {chartNodes.length && chartLinks.length && (
         <ResponsiveSankey
