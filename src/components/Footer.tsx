@@ -75,7 +75,7 @@ const Footer = () => (
       </a>
     </div>
     <div>
-      © {new Date().getFullYear()} International HundredK+ Cohorts Consortium
+      © {new Date().getFullYear()} International Health Cohorts Consortium
     </div>
   </div>
 );
