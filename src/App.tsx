@@ -94,7 +94,7 @@ function App() {
             `}
           >
             <img alt="IHCC logo" src={logo} className={logoStyle}></img>
-            International HundredK+ Cohorts Consortium
+            International Health Cohorts Consortium
           </div>
           <div
             className={css`
