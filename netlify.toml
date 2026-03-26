@@ -1,0 +1,11 @@
+[[redirects]]
+from = "https://www.ihccglobal.org/*"
+to   = "https://atlas.ihccglobal.org/:splat"
+status = 301
+force  = true
+
+[[redirects]]
+from = "https://ihccglobal.org/*"
+to   = "https://atlas.ihccglobal.org/:splat"
+status = 301
+force  = true
