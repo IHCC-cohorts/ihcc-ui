@@ -1,0 +1,25 @@
+# Specific paths first
+[[redirects]]
+from = "https://www.ihccglobal.org/contact-us/*"
+to   = "https://atlas.ihccglobal.org/"
+status = 301
+force  = true
+
+[[redirects]]
+from = "https://ihccglobal.org/contact-us/*"
+to   = "https://atlas.ihccglobal.org/"
+status = 301
+force  = true
+
+# Catch-all: carry the path across to atlas
+[[redirects]]
+from = "https://www.ihccglobal.org/*"
+to   = "https://atlas.ihccglobal.org/:splat"
+status = 301
+force  = true
+
+[[redirects]]
+from = "https://ihccglobal.org/*"
+to   = "https://atlas.ihccglobal.org/:splat"
+status = 301
+force  = true
